@@ -12,6 +12,6 @@ function Greeting(props) {
 };
 
 Greeting.defaultProps = {
-    name: '리액트 네이티브'
+    name: '리액트 네이티브s'
 }
 export default Greeting;
