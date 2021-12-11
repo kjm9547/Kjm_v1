@@ -1,13 +1,19 @@
-import React from "react";
-import { SafeAreaView } from "react-native";
-import Box from './components/box'
+import React, { useState } from "react";
+import { SafeAreaView} from "react-native";
+import Counter from './components/counter'
 
-const App = () =>{
+const App = () => {
+  const [count,setCount] =useState(0)
+
+  const up = () => setCount(count+1)
+  const down = () => setCount(count-1)
+  
   return(
     <SafeAreaView>
-      <Box></Box>
+      <Counter count={count} up={up} down={down}/>
     </SafeAreaView>
   )
 }
+
 
 export default App;
