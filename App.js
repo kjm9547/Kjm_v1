@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import { SafeAreaView} from "react-native";
-import Counter from './components/counter'
+import { SafeAreaView,StyleSheet} from "react-native";
+import Datehead from './components/datehead'
 
 const App = () => {
-  const [count,setCount] =useState(0)
-
-  const up = () => setCount(count+1)
-  const down = () => setCount(count-1)
-  
+  const today = new Date()
   return(
-    <SafeAreaView>
-      <Counter count={count} up={up} down={down}/>
+    <SafeAreaView style={styles.full}>
+      <Datehead date={today}></Datehead>
     </SafeAreaView>
   )
 }
 
-
+const styles = StyleSheet.create({
+  full:{
+    flex:1
+  }
+})
 export default App;
