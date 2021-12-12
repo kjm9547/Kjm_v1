@@ -17,7 +17,7 @@ function Datehead({date}){
 const styles = StyleSheet.create({
     headline:{
         backgroundColor:'#26a69a',
-        padding:16
+        padding:17
     },
     datetext:{
         fontSize:24,
