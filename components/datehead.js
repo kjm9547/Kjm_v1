@@ -1,16 +1,20 @@
 import React from "react";
-import {Text,View,StyleSheet} from 'react-native'
+import {Text,View,StyleSheet,StatusBar} from 'react-native'
 
 function Datehead({date}){
     const year =date.getFullYear();
     const month = date.getMonth()+1;
     const day = date.getDate();
+    
     return(
+        <>
+        <StatusBar backgroundColor={'#26a69a'} barStyle="light-content"/>
         <View style={styles.headline}>
             <Text style={styles.datetext}>
                 {year} + {month} + {day}
             </Text>
         </View>
+        </>
     )
 }
 
