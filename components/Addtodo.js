@@ -16,7 +16,8 @@ function Addtodo(){
          value={text}
          onChangeText={setText}
          onSubmitEditing ={onpress}
-         returnKeyType="done">
+         returnKeyType="done"
+         >
         </TextInput>
         <TouchableOpacity activeOpacity={0.5}>
         <View  style={styles.bt_st}>
