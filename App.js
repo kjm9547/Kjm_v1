@@ -1,9 +1,10 @@
 import React,{useState} from "react";
-import { SafeAreaView,StyleSheet} from "react-native";
+import { SafeAreaView,StyleSheet,Image} from "react-native";
 import Datehead from './components/datehead';
 import Addtodo from './components/Addtodo';
 import Todolist from './components/todolist';
 import Empty from './components/empty'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 const App = () => {
   const today = new Date()
   const [todos, setTodos] =useState([
@@ -12,13 +13,34 @@ const App = () => {
     {id: 3, text: '투두리스트 만들어보기', done:false},
     
   ])
+  const onInsert =text => {
+    const nextid =
+    todos.length> 0 ? Math.max(...todos.map(todo => todo.id)) +1:1;
+
+    const todo = {
+      id: nextid,text,
+      done:false
+    }
+
+    setTodos(todos.concat(todo));
+  }
   
+
+  const onToggle = id =>{
+    const nextTodos = todos.map(todo =>
+       todo.id === id? {...todo,done: !todo.done}: todo,);
+    setTodos(nextTodos);
+  }
   return(
     <SafeAreaView style={styles.full}>
       <Datehead date={today}></Datehead>
-      {todos.length === 0 ? <Empty/>:<Todolist todos={todos}/>} 
+
+      {todos.length === 0 ? <Empty/>:<Todolist todos={todos} onToggle={onToggle}/>} 
       
-      <Addtodo></Addtodo>
+      <Addtodo onInsert={onInsert}></Addtodo>
+     
+      <Icon name="delete" size={32}></Icon>
+      
     </SafeAreaView>
   )
 }
