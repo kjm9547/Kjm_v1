@@ -1,7 +1,27 @@
 import React from "react";
-import {View,Text,StyleSheet,TouchableOpacity, Image} from 'react-native'
-
-function Todoitems({id,text,done,onToggle}){
+import {View,Text,StyleSheet,TouchableOpacity, Image,Alert} from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+function Todoitems({id,text,done,onToggle,onRemove}){
+    const remove = () => {
+        Alert.alert(
+            '삭제',
+            '정말로 삭제하시겠어요?',
+            [
+                {text: '취소', onPress: () => {},style:'cancel'},
+                {
+                    text: '삭제',
+                    onPress: () =>{
+                        onRemove(id);
+                    },
+                    style: 'destructive',
+                },
+            ],
+            {
+                cancelable:true,
+                onDismiss: () => {},
+            },
+        );
+    };
     return(
         <View style={styles.itme}>
             <TouchableOpacity onPress={()=>onToggle(id)}>
@@ -14,7 +34,11 @@ function Todoitems({id,text,done,onToggle}){
             <Text style={[styles.text, done&& styles.lineThrough]}>
                 {text}
             </Text>
-            
+            {done ?(<TouchableOpacity onPress={remove}>
+                <Icon name="delete" size={32}></Icon>
+            </TouchableOpacity>):
+            (<View style={styles.removeplaceholder}/>)
+            }
         </View>
     )
 
@@ -44,6 +68,10 @@ const styles = StyleSheet.create(
             backgroundColor:'#26a69a',
             justifyContent:'center',
             alignItems:'center'
+        },
+        removeplaceholder: {
+            widht:32,
+            height:32
         }
     }
 )
